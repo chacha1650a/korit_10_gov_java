@@ -1,0 +1,21 @@
+package study.ch07.Example;
+
+public class Ex14 {
+    public static void main(String[] args) {
+        String grade = "B";
+        switch (grade) {
+            case "A" :
+                System.out.println("우수");
+                break;
+            case "B" :
+                System.out.println("보통");
+                break;
+            case "C" :
+                System.out.println("미흡");
+                break;
+            default:
+                System.out.println("등급 없음");
+        }
+    }
+} // 실행 결과 : String grade의 문자열이 "B"임으로 case B가
+  // 실행 되어 "보통"이 나오게 된다
