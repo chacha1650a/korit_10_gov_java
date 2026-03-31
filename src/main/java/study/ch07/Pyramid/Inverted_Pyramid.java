@@ -9,7 +9,10 @@ public class Inverted_Pyramid {
         Scanner scRows = new Scanner(System.in);
 
         int rows = scRows.nextInt();
-
+        for (int i = 0; i < rows * 3; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
         for(int i = 0; i < rows; i++) {
             int stars = 2 * (rows - i) - 1;
 
@@ -23,6 +26,9 @@ public class Inverted_Pyramid {
             System.out.println();
 
         }
-
+        for (int i = 0; i < rows * 3; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
     }
 }
