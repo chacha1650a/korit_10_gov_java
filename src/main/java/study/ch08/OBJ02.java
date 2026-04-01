@@ -16,7 +16,7 @@ public class OBJ02 {
             // 알아보기 어렵기에 기능별로 코드를 나눠 주어야 한다
 
             Addition() {
-                System.out.println("성상자 호출");
+                System.out.println("생성자 호출");
             }
 
             int add(int a, int b) {
@@ -29,7 +29,7 @@ public class OBJ02 {
 
         }
 
-        Addition add1 = new Addition(); // 새로운 객체 생성
+        Addition add1 = new Addition(); // 새로운 객체 생성 - 동적 메모리 할당
         int num  = 1000; // num에 리터럴 1000값 대입
         int num2 = add1.add(100, 200); // add1객체에 add 메서드를 참조해서 매개변수 대입 후 리턴 된 값을 num2에 저장
         System.out.println(num + num2); // 정수형 변수 num , num2에 담긴 값을 산술 연산(+) 후 출력.

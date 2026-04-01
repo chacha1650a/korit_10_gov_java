@@ -23,8 +23,9 @@ public class Main {
         user.setName("김대훈");
         user.getName();
 
-        System.out.println(user.getName());
         System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        System.out.println(user.getName());
 
 
     }
