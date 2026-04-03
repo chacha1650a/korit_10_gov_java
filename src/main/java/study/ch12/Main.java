@@ -43,6 +43,11 @@ public class Main {
             public void eat() {
 
             }
+
+            @Override
+            public void showInfo() {
+
+            }
         };
 
     }
