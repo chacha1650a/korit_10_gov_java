@@ -11,17 +11,18 @@ import java.util.UUID;
 @AllArgsConstructor
 class User {
     private Long id;
-    private String name;
+    private String username;
     private String password;
 
 }
 
-class userRepository {
+class UserRepository {
     private final User[] users;
     private Long lastCreatedId = 0L ;
 
-    public userRepository() {
-        users = new User[100];
+    // Repository는 배열을 의존하고 있다.(의존성 주입: Dependency Injection)
+    public UserRepository(User[] users) {
+        this.users = users;
     }
 
     public boolean addUser(User user) {
@@ -43,10 +44,10 @@ class userRepository {
         return isSuccess;
 }
 
-    public User findByUsername(String username) {
+    public User findByUsername(String usernames) {
         for (User user : users) {
             if (user == null) continue;
-            if (user.getPassword().equals(username)) {
+            if (user.getUsername().equals(usernames)) {
                 return user;
             }
         }
@@ -63,29 +64,39 @@ class userRepository {
 }
 
 class UserService {
+    private UserRepository UserRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.UserRepository = UserRepository;
+    }
+
     public int signup(String usernames, String passwords) {
         // 성공 : 200, 실패 : 400(중복아이디), 500(공간부족)
         int status = 200;
 
-        userRepository userRepository = new userRepository();
-        User foundUser = userRepository.findByUsername(usernames);
+        User foundUser = UserRepository.findByUsername(usernames);
         if (foundUser != null) {
             return 400;
         }
         User newUser = new User(0L, usernames, passwords);
-        boolean isSuccess = userRepository.addUser(newUser);
+        boolean isSuccess = UserRepository.addUser(newUser);
         if (isSuccess) {
             return 500;
         }
 
-        userRepository.printUsers();
+        UserRepository.printUsers();
         return 200;
     }
 }
 
 class UserController {
+    private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     public void postMapping(String usernames, String passwords) {
-        UserService userService = new UserService();
         int status = userService.signup(usernames, passwords);
         switch (status) {
             case 200 :
@@ -120,9 +131,13 @@ public class Static02 {
         System.out.println(Arrays.toString(usernames));
         System.out.println(Arrays.toString(passwords));
 
-        UserController userController = new UserController();
+        User[] users = new User[100];
+        UserRepository userRepository = new UserRepository(users);
+        UserService userService = new UserService(userRepository);
+
+        UserController userController = new UserController(new UserService(new UserRepository(users)));
         for (int i = 0; i < 500; i++) {
             userController.postMapping(usernames[i], passwords[i]);
         }
     }
-  }
+}
