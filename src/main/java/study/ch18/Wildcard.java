@@ -47,6 +47,6 @@ public class Wildcard {
         Wildcard.print2(new SuccessResponse<>(200, new Student()));
 //        Wildcard.print3(new SuccessResponse<HighStudent>(200, new HighStudent())); 하한 제약에 걸림
 
-        
+
     }
 }
