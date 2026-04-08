@@ -53,12 +53,7 @@ public class Ex06 {
 
         System.out.println(scoreMap);
 
-        Map<String, Integer> totalScoreMap = new HashMap<>(Map.of(
-                "김준일", 0,
-                "김준이", 1,
-                "김준삼", 2,
-                "김준사", 3
-        ));
+        Map<String, Integer> totalScoreMap = new HashMap<>();
         for (Student student : studentList) {
             totalScoreMap.put(student.getName(), student.getKorScore() + student.getEngScore() + student.getMathScore());
         }
