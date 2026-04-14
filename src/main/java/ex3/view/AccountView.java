@@ -1,20 +1,20 @@
-package ex2.view;
+package ex3.view;
 
-import ex2.controller.Controller;
-import ex2.router.RouterPath;
-import ex2.router.Routes;
-import ex2.util.Input;
-import ex2.dto.ResponseDto;
-import lombok.Getter;
+import ex3.router.RouterPath;
+import ex3.router.Routes;
+import ex3.util.Input;
 
 public class AccountView implements View{
     @Override
     public void render() {
         accountMenu();
         String cmd = Input.nextLine();
-        ResponseDto<?> response = Controller.accountController(cmd);
-        if (response.getStatus() == 100) {
-            RouterPath.current = Routes.HOME.name();
+        if ("1.".equals(cmd)) {
+            System.out.println("계좌 생성을 진행합니다.");
+        }
+
+        if ("b".equals(cmd)) {
+            RouterPath.current = Routes.Home.name();
         }
     }
 

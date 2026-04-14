@@ -7,7 +7,6 @@ import ex2.router.Routes;
 import ex2.util.Input;
 import ex2.view.HomeView;
 
-import java.util.Map;
 
 public class Ex2Application {
     public static boolean running = true;
